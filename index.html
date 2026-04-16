@@ -51,6 +51,8 @@
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;font-size:16px;}
+/* Prevent flash of wrong scroll position */
+html.loading{scroll-behavior:auto;}
 body{
   background:var(--bg);
   color:var(--t2);
@@ -1585,6 +1587,32 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
 <!-- GPH input injected only for admin -->
 
 <script>
+/* ════════════════════════════════════════════
+   CRITICAL: Force page to top on every load.
+   Prevents browser scroll restoration and
+   URL hash (#contact etc) from jumping down.
+════════════════════════════════════════════ */
+(function(){
+  // Disable scroll restoration so browser doesn't jump
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  // Kill any hash in the URL silently (no page jump)
+  if (window.location.hash) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
+  // Force instant scroll to top before anything renders
+  document.documentElement.classList.add('loading');
+  window.scrollTo(0, 0);
+  document.addEventListener('DOMContentLoaded', () => {
+    window.scrollTo(0, 0);
+    // Re-enable smooth scroll after a frame so it doesn't animate to top
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.documentElement.classList.remove('loading');
+      });
+    });
+  });
+})();
+
 /* ── CURSOR ── */
 const CUR=document.getElementById('CUR'),CR=document.getElementById('CUR_R');
 let mx=0,my=0,rx=0,ry=0;
@@ -1605,15 +1633,37 @@ for(let i=0;i<8;i++){
 
 /* ── PRELOADER ── */
 window.addEventListener('load',()=>{
+  window.scrollTo(0,0); // guarantee top on load
   setTimeout(()=>{
+    window.scrollTo(0,0);
     const p=document.getElementById('PL');
-    p.style.opacity='0';setTimeout(()=>p.style.display='none',1200);
+    p.style.opacity='0';
+    setTimeout(()=>{
+      p.style.display='none';
+      window.scrollTo(0,0); // one final check after preloader gone
+    },1200);
   },2800);
 });
 
 /* ── NAV ── */
 window.addEventListener('scroll',()=>document.getElementById('NB').classList.toggle('compact',scrollY>60));
 function toggleMob(){const m=document.getElementById('mobnav');m.style.display=m.style.display==='flex'?'none':'flex';}
+
+/* ── SMOOTH SCROLL — no hash in URL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    // Close mobile nav if open
+    const mob = document.getElementById('mobnav');
+    if (mob && mob.style.display === 'flex') toggleMob();
+    // Smooth scroll without changing URL hash
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
 
 /* ── REVEAL ── */
 const RO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.09});
