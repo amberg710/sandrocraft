@@ -795,10 +795,12 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
 /* ═══════════════════════════════════════════
    RESPONSIVE — MOBILE FIRST
 ═══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   TABLET — 1040px
+═══════════════════════════════════════════ */
 @media(max-width:1040px){
-  /* Hero becomes single column */
   #hero{grid-template-columns:1fr;}
-  .hero-right{padding:4rem 2rem;min-height:50vh;}
+  .hero-right{padding:4rem 2rem;min-height:55vw;}
   .hero-left::after{display:none;}
   .about-grid,.contact-grid,.proc-grid{grid-template-columns:1fr;gap:4rem;}
   .about-tag{right:0;}
@@ -806,48 +808,239 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
   .prod-grid{grid-template-columns:1fr 1fr;}
   .foot-grid{grid-template-columns:1fr 1fr;gap:2.5rem;}
   .ap-kpis{grid-template-columns:1fr 1fr;}
+  .creds-grid{grid-template-columns:repeat(4,1fr);}
 }
+
+/* ═══════════════════════════════════════════
+   MOBILE — 700px
+   Full redesign for phone — nothing cramped,
+   everything beautiful and touchable
+═══════════════════════════════════════════ */
 @media(max-width:700px){
-  nav{padding:1rem 1.2rem;}
-  nav.compact{padding:.85rem 1.2rem;}
+
+  /* ── NAV ── */
+  nav{padding:.9rem 1.2rem;}
+  nav.compact{padding:.75rem 1.2rem;}
   .nlinks{display:none;}
   .ham{display:flex;}
   .ncta{display:none;}
-  .si{padding:0 1.2rem;}
-  .s-wrap{padding:4.5rem 0;}
-  .hero-left{padding:3rem 1.2rem 4rem;}
-  .hero-right{padding:3rem 1.2rem;}
-  .hero-h1{font-size:clamp(2.8rem,12vw,4.5rem);}
-  .hero-actions{flex-direction:column;}
-  .hero-actions .btn{width:100%;text-align:center;}
-  .hero-stats{grid-template-columns:repeat(3,1fr);}
-  .creds-grid{grid-template-columns:1fr 1fr;gap:1.5rem;}
-  .cred-item{border-right:none;padding:0;}
+  /* Mobile nav full-screen */
+  #mobnav{top:54px;gap:2rem;}
+  #mobnav a{font-size:1.6rem;}
+
+  /* ── SPACING ── */
+  .si{padding:0 1.1rem;}
+  .s-wrap{padding:4rem 0;}
+
+  /* ── PRELOADER ── */
+  .pl-name{font-size:clamp(1.4rem,7vw,2.2rem);letter-spacing:.18em;}
+  .pl-name em{font-size:clamp(.65rem,2.5vw,.85rem);letter-spacing:.35em;}
+  .pl-line-wrap{width:160px;}
+
+  /* ── HERO ── */
+  #hero{min-height:auto;}
+  .hero-left{
+    padding:5rem 1.2rem 2.5rem;
+    order:1;
+  }
+  .hero-right{
+    padding:2rem 1.2rem 2rem;
+    min-height:70vw;
+    order:2;
+  }
+  .hero-eyebrow{font-size:.52rem;letter-spacing:.38em;margin-bottom:1.2rem;}
+  .hero-h1{
+    font-size:clamp(3rem,14vw,5rem);
+    line-height:.9;
+    margin-bottom:1rem;
+  }
+  .hero-rule{margin:1.2rem 0;}
+  .hero-rule span{font-size:.46rem;letter-spacing:.28em;}
+  .hero-body{font-size:1rem;margin-bottom:1.8rem;}
+  .hero-actions{flex-direction:column;gap:.7rem;}
+  .hero-actions .btn{width:100%;text-align:center;padding:.95rem 1.5rem;}
+  .hero-scroll{display:none;}
+  /* Sword frame — shorter on mobile */
+  .vis-frame{aspect-ratio:2/2.2;}
+  .vis-frame svg{width:44%!important;}
+  /* Stats bar — 3 cols on phone */
+  .hero-stats{
+    grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--brd);
+  }
+  .hstat{padding:.7rem .5rem;}
+  .hstat-n{font-size:1.2rem;}
+  .hstat-l{font-size:.38rem;letter-spacing:.18em;}
+
+  /* ── CREDENTIALS ── */
+  #creds{padding:2.5rem 1.1rem;}
+  .creds-grid{
+    grid-template-columns:1fr 1fr;
+    gap:1.5rem 1rem;
+    text-align:center;
+  }
+  .cred-item{border-right:none;padding:.8rem;background:var(--dark2);border:1px solid var(--brd);}
+  .cred-n{font-size:clamp(1.6rem,8vw,2.4rem);}
+  .cred-l{font-size:.44rem;letter-spacing:.25em;}
+  .creds-got{font-size:.5rem;letter-spacing:.28em;margin-top:1.5rem;padding-top:1.5rem;}
+
+  /* ── MARQUEE ── */
+  #marquee-wrap{padding:.7rem 0;}
+  .marquee-inner{animation-duration:18s;}
+
+  /* ── ABOUT ── */
+  .about-vis{padding-bottom:3rem;padding-right:0;}
+  .about-frame svg{width:60%!important;}
+  .about-tag{
+    right:0;bottom:-2rem;
+    width:105px;height:105px;
+  }
+  .about-tag-n{font-size:1.9rem;}
+  .got-box{padding:1.2rem;}
+  .got-box p{font-size:.95rem;}
+  .pillars{grid-template-columns:1fr 1fr;}
+  .pillar{padding:1rem;}
+  .pillar h4{font-size:.56rem;}
+  .pillar p{font-size:.84rem;}
+
+  /* ── GALLERY ── */
   .gal-head{grid-template-columns:1fr;gap:1rem;}
-  .gfilt{justify-content:flex-start;}
-  /* Gallery: simple 2-col on mobile */
-  .gmos{grid-template-columns:1fr 1fr;grid-auto-rows:auto;}
-  .gi{grid-column:span 1!important;grid-row:span 1!important;min-height:140px;}
-  .g-upload{grid-column:span 2!important;min-height:90px;}
-  .shop-head{grid-template-columns:1fr;}
-  .s-pills{justify-content:flex-start;}
-  .prod-grid{grid-template-columns:1fr;}
-  .testi-grid{grid-template-columns:1fr;}
-  .lb-box{grid-template-columns:1fr;}
-  .lb-vis{min-height:160px;border-right:none;border-bottom:1px solid var(--br);}
+  .gfilt{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:.5rem;}
+  .gf{flex-shrink:0;font-size:.48rem;padding:.36rem .75rem;}
+  /* 2-col square mosaic */
+  .gmos{
+    grid-template-columns:1fr 1fr;
+    grid-auto-rows:auto;
+    gap:3px;
+  }
+  .gi{
+    grid-column:span 1!important;
+    grid-row:span 1!important;
+    min-height:44vw;
+  }
+  /* First item slightly taller for visual interest */
+  .gi:nth-child(1){min-height:58vw;}
+  .g-upload{grid-column:span 2!important;min-height:80px;}
+  /* Touch: show overlay on tap */
+  .gi-ov{opacity:0;transition:opacity .25s;}
+  .gi.touched .gi-ov{opacity:1;}
+  .gi-name{font-size:.82rem;}
+  .gi-sub{font-size:.46rem;}
+
+  /* ── SHOP ── */
+  .shop-head{grid-template-columns:1fr;gap:1.2rem;}
+  .s-pills{justify-content:flex-start;flex-wrap:wrap;}
+  .prod-grid{grid-template-columns:1fr;gap:1px;}
+  .pc-name{font-size:.92rem;}
+  .pc-desc{font-size:.86rem;}
+  .pc-price{font-size:1.15rem;}
+  .btn-add{font-size:.5rem;padding:.45rem .9rem;}
+  /* Card: no 3D tilt on touch — use tap highlight instead */
+  .pc{-webkit-tap-highlight-color:transparent;}
+  .pc:active{transform:scale(.98);transition:transform .1s ease;}
+
+  /* ── PROCESS ── */
+  .proc-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .proc-right{position:static;order:1;}
+  .proc-steps{order:2;}
+  .proc-frame{aspect-ratio:16/9;}
+  .proc-frame svg{width:55%!important;}
+  .step{grid-template-columns:38px 1fr;gap:.8rem;padding:1.3rem 0;}
+  .step-n{font-size:1.4rem;}
+  .step-txt h3{font-size:.6rem;letter-spacing:.18em;}
+  .step-txt p{font-size:.92rem;}
+
+  /* ── TESTIMONIALS ── */
+  .testi-grid{
+    grid-template-columns:1fr;
+    gap:1px;
+  }
+  .tc{padding:1.8rem 1.2rem;}
+  .tc-text{font-size:.98rem;}
+  /* Touch tap effect */
+  .tc:active{transform:scale(.99);transition:transform .1s;}
+
+  /* ── CONTACT ── */
+  .contact-grid{grid-template-columns:1fr;gap:3rem;}
+  .c-dets{gap:1.1rem;}
+  .c-dval{font-size:.92rem;}
   .f-row{grid-template-columns:1fr;}
+  .fg input,.fg select,.fg textarea{
+    font-size:1rem; /* prevents iOS zoom on focus */
+    padding:.82rem .95rem;
+  }
+  .fg label{font-size:.48rem;}
+
+  /* ── LIGHTBOX ── */
+  .lb-veil{padding:.8rem;align-items:flex-end;}
+  .lb-box{
+    grid-template-columns:1fr;
+    border-radius:0;
+    max-height:90vh;
+    overflow-y:auto;
+  }
+  .lb-vis{min-height:50vw;border-right:none;border-bottom:1px solid var(--br);}
+  .lb-info{padding:1.5rem;}
+  .lb-title{font-size:1.1rem;}
+  .lb-price{font-size:1.5rem;margin-bottom:1.2rem;}
+  /* Slide up from bottom on mobile */
+  .lb-veil.on .lb-box{animation:slideUp .35s cubic-bezier(.25,.46,.45,.94);}
+  @keyframes slideUp{from{transform:translateY(30px);opacity:0;}to{transform:none;opacity:1;}}
+
+  /* ── CART DRAWER ── */
+  #cart-drawer{
+    max-width:100%;
+    right:-100%;
+    border-left:none;
+    border-top:1px solid var(--br);
+    top:auto;
+    bottom:0;
+    height:90vh;
+    border-radius:16px 16px 0 0;
+  }
+  #cart-drawer.on{right:0;}
+  /* Slides up from bottom on mobile */
+  #cart-drawer{transition:bottom .42s cubic-bezier(.4,0,.2,1),right .42s cubic-bezier(.4,0,.2,1);}
+  .ci-iname{font-size:.66rem;}
+  .ci-iprice{font-size:.9rem;}
+
+  /* ── FOOTER ── */
   .foot-grid{grid-template-columns:1fr;gap:2rem;}
-  .foot-bot{flex-direction:column;align-items:flex-start;}
+  .foot-brand{font-size:1rem;}
+  .foot-tag{font-size:.88rem;}
+  .foot-bot{flex-direction:column;align-items:flex-start;gap:.6rem;}
+  footer::before{width:70%;}
+
+  /* ── ADMIN ── */
   .ap-kpis{grid-template-columns:1fr 1fr;}
-  .ap-body{padding:1.5rem 1rem;}
-  .pillars{grid-template-columns:1fr;}
-  .step{grid-template-columns:40px 1fr;gap:.9rem;}
-  .step-n{font-size:1.5rem;}
+  .ap-body{padding:1.2rem .9rem;}
+  .ap-tabs{overflow-x:auto;flex-wrap:nowrap;}
+  .ap-tab{flex-shrink:0;font-size:.5rem;padding:.6rem .9rem;}
+  .ap-tw{font-size:.82rem;}
+  .agp-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));}
+
+  /* ── BUTTONS — bigger tap targets ── */
+  .btn{min-height:48px;display:flex;align-items:center;justify-content:center;}
+  .cart-btn{min-height:38px;padding:.5rem 1rem;}
+
+  /* ── SECTION HEADINGS ── */
+  .s-h2{font-size:clamp(1.9rem,8vw,3rem);}
+  .s-label{font-size:.5rem;letter-spacing:.38em;}
+  .s-body{font-size:1rem;}
 }
+
+/* ═══════════════════════════════════════════
+   SMALL PHONES — 420px
+═══════════════════════════════════════════ */
 @media(max-width:420px){
+  .hero-h1{font-size:clamp(2.6rem,13vw,3.8rem);}
   .creds-grid{grid-template-columns:1fr 1fr;}
-  .hero-stats{grid-template-columns:1fr;}
-  .ap-kpis{grid-template-columns:1fr;}
+  .hero-stats{grid-template-columns:1fr 1fr 1fr;}
+  .ap-kpis{grid-template-columns:1fr 1fr;}
+  .hstat-n{font-size:1.1rem;}
+  .s-h2{font-size:clamp(1.7rem,9vw,2.6rem);}
+  .vis-frame{aspect-ratio:1/1;}
+  .pillars{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -2399,6 +2592,258 @@ document.querySelectorAll('.s-wrap').forEach(sec => {
 });
 
 console.log('%c Sandro Ferro — Animation Layer Loaded ', 'background:#1a1814;color:#c8c4bc;font-family:serif;padding:6px 12px;font-size:13px;');
+
+/* ════════════════════════════════════════════
+   MOBILE ENHANCEMENT LAYER
+   Detects touch device and applies:
+   — Touch ripple on all buttons/cards
+   — Gallery tap-to-reveal overlay
+   — Swipe-down to close cart
+   — iOS font-size fix (prevents zoom)
+   — Touch-friendly scroll animations
+   — Momentum scroll polish
+════════════════════════════════════════════ */
+
+const IS_TOUCH = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+
+/* ── TOUCH RIPPLE ── */
+function createRipple(e, el, lightBg = true) {
+  const rect = el.getBoundingClientRect();
+  const touch = e.touches ? e.touches[0] : e;
+  const x = touch.clientX - rect.left;
+  const y = touch.clientY - rect.top;
+  const r = Math.max(rect.width, rect.height);
+
+  const ripple = document.createElement('span');
+  ripple.style.cssText = `
+    position:absolute;
+    left:${x - r/2}px;top:${y - r/2}px;
+    width:${r}px;height:${r}px;
+    border-radius:50%;
+    background:${lightBg ? 'rgba(26,24,20,.07)' : 'rgba(244,242,238,.08)'};
+    transform:scale(0);
+    animation:rippleAnim .55s cubic-bezier(.25,.46,.45,.94) forwards;
+    pointer-events:none;
+    z-index:10;
+  `;
+  // Ensure parent is relative
+  const pos = getComputedStyle(el).position;
+  if (pos === 'static') el.style.position = 'relative';
+  el.style.overflow = 'hidden';
+  el.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 600);
+}
+
+// Global ripple style
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+  @keyframes rippleAnim {
+    to { transform: scale(2.5); opacity: 0; }
+  }
+  /* Smooth momentum scroll on iOS */
+  .cart-bd, .ap-body, #adm-panel, .gfilt {
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Prevent text selection on tap */
+  .btn, .cart-btn, .ncta, .gf, .spill, .gi, .pc, .tc, .pillar, .ham {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  /* Active state — instant feedback on touch */
+  .btn:active { opacity: .88; }
+  .gf:active, .spill:active { opacity: .75; }
+  /* Remove 300ms tap delay everywhere */
+  * { touch-action: manipulation; }
+  /* Mobile cart slides up from bottom */
+  @media(max-width:700px){
+    #cart-drawer {
+      top: auto !important;
+      bottom: -100% !important;
+      right: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      height: 88vh;
+      border-radius: 20px 20px 0 0;
+      border-top: 1px solid var(--br);
+      border-left: none;
+      transition: bottom .42s cubic-bezier(.4,0,.2,1) !important;
+    }
+    #cart-drawer.on { bottom: 0 !important; }
+    /* Drag handle */
+    #cart-drawer::before {
+      content: '';
+      display: block;
+      width: 36px; height: 4px;
+      border-radius: 2px;
+      background: var(--silver);
+      margin: .9rem auto .2rem;
+      opacity: .4;
+    }
+  }
+  /* Nav brand smaller on very small phones */
+  @media(max-width:360px){
+    .nbrand-top { font-size: .82rem; letter-spacing: .1em; }
+    .nbrand-bot { display: none; }
+    .cart-btn { font-size: .48rem; padding: .42rem .75rem; }
+  }
+`;
+document.head.appendChild(rippleStyle);
+
+/* Apply ripple to interactive elements */
+if (IS_TOUCH) {
+  const rippleTargets = '.btn, .cart-btn, .ncta, .gf, .btn-add, .btn-co, .btn-pp, .btn-det, .btn-outline-dark, .btn-outline-light, .btn-dark';
+  document.querySelectorAll(rippleTargets).forEach(el => {
+    el.addEventListener('touchstart', e => createRipple(e, el, !el.closest('.s-wrap--dark, #creds, #shop')), { passive: true });
+  });
+  // Also on dynamically created product cards
+  const origRP = window.renderProducts || renderProducts;
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.btn-add, .btn-det, .btn-co');
+    if (btn) createRipple(e, btn);
+  });
+}
+
+/* ── GALLERY TAP TO REVEAL ── */
+if (IS_TOUCH) {
+  document.getElementById('GMOS').addEventListener('touchstart', e => {
+    const gi = e.target.closest('.gi');
+    if (!gi) return;
+    // Toggle this one, close others
+    const wasOn = gi.classList.contains('touched');
+    document.querySelectorAll('#GMOS .gi.touched').forEach(el => el.classList.remove('touched'));
+    if (!wasOn) gi.classList.add('touched');
+  }, { passive: true });
+}
+
+/* ── SWIPE DOWN TO CLOSE CART (mobile) ── */
+(function() {
+  const cart = document.getElementById('cart-drawer');
+  let startY = 0, startTime = 0;
+  cart.addEventListener('touchstart', e => {
+    startY = e.touches[0].clientY;
+    startTime = Date.now();
+  }, { passive: true });
+  cart.addEventListener('touchend', e => {
+    const dy = e.changedTouches[0].clientY - startY;
+    const dt = Date.now() - startTime;
+    // Swipe down > 80px in < 400ms = close
+    if (dy > 80 && dt < 400 && document.getElementById('cart-drawer').classList.contains('on')) {
+      toggleCart();
+    }
+  }, { passive: true });
+})();
+
+/* ── MOBILE MENU: close on outside tap ── */
+document.addEventListener('touchstart', e => {
+  const mob = document.getElementById('mobnav');
+  if (mob.style.display === 'flex' && !mob.contains(e.target) && !document.querySelector('.ham').contains(e.target)) {
+    toggleMob();
+  }
+}, { passive: true });
+
+/* ── iOS SAFE AREA / VIEWPORT HEIGHT FIX ── */
+function setVH() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+setVH();
+window.addEventListener('resize', setVH);
+
+/* ── STAGGER RIPPLE ON PRODUCT CARDS (touch) ── */
+if (IS_TOUCH) {
+  document.addEventListener('touchstart', e => {
+    const card = e.target.closest('.pc');
+    if (card) {
+      card.style.transform = 'scale(.98)';
+      card.style.transition = 'transform .1s ease';
+      setTimeout(() => {
+        card.style.transform = '';
+        card.style.transition = 'transform .4s cubic-bezier(.25,.46,.45,.94)';
+      }, 150);
+    }
+  }, { passive: true });
+}
+
+/* ── SCROLL FADE-IN FOR MOBILE (lighter threshold) ── */
+if (IS_TOUCH) {
+  // Re-observe with lower threshold for faster mobile reveals
+  const mobileObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        // Also trigger char reveal on mobile
+        if (e.target.dataset.charWrapped && !e.target.dataset.charRevealed) {
+          e.target.dataset.charRevealed = '1';
+          revealChars(e.target, 0);
+        }
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.rv, .rvL, .rvR').forEach(el => mobileObs.observe(el));
+  document.querySelectorAll('.s-h2, .hero-h1').forEach(el => mobileObs.observe(el));
+  document.querySelectorAll('.about-frame, .proc-frame, .vis-frame').forEach(el => {
+    const clipMobs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
+    }, { threshold: 0.05 });
+    clipMobs.observe(el);
+  });
+}
+
+/* ── MOBILE PARALLAX — use deviceOrientation instead of scroll ── */
+if (IS_TOUCH && window.DeviceOrientationEvent) {
+  const sword = document.querySelector('.vis-sword');
+  window.addEventListener('deviceorientation', e => {
+    if (!sword) return;
+    const tiltX = Math.max(-12, Math.min(12, e.gamma || 0));
+    const tiltY = Math.max(-8, Math.min(8, (e.beta || 0) - 45));
+    sword.style.transform = `translateY(${-tiltY * 0.8}px) rotateY(${tiltX * 0.4}deg)`;
+    sword.style.transition = 'transform .3s ease';
+  }, { passive: true });
+}
+
+/* ── MOBILE COUNTER TRIGGER ── */
+if (IS_TOUCH) {
+  const mCountObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !e.target.dataset.counted) {
+        e.target.dataset.counted = '1';
+        e.target.querySelectorAll('.cred-n, .hstat-n').forEach(el => animateCount(el));
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('#creds, #hero').forEach(el => mCountObs.observe(el));
+}
+
+/* ── MOBILE TESTIMONIAL TAP EFFECT ── */
+if (IS_TOUCH) {
+  document.querySelectorAll('.tc').forEach(card => {
+    card.addEventListener('touchstart', () => {
+      card.style.transform = 'translateY(-3px)';
+      card.style.transition = 'transform .15s ease';
+    }, { passive: true });
+    card.addEventListener('touchend', () => {
+      setTimeout(() => {
+        card.style.transform = '';
+        card.style.transition = 'transform .4s ease';
+      }, 200);
+    }, { passive: true });
+  });
+}
+
+/* ── DYNAMIC RIPPLE FOR NEWLY CREATED ELEMENTS ── */
+const mutObs = new MutationObserver(mutations => {
+  if (!IS_TOUCH) return;
+  mutations.forEach(m => {
+    m.addedNodes.forEach(node => {
+      if (node.nodeType !== 1) return;
+      node.querySelectorAll && node.querySelectorAll('.btn-add, .btn-det, .pc').forEach(el => {
+        el.addEventListener('touchstart', e => createRipple(e, el), { passive: true });
+      });
+    });
+  });
+});
+mutObs.observe(document.getElementById('PGRID'), { childList: true });
 </script>
 </body>
 </html>
